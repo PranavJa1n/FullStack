@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        form{
+            width: 300px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+            background-color: aliceblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        input[type="text"], input[type="email"]{
+            padding: 8px;
+            border: 1px solid black;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button{
+            background-color:red;
+            color: blanchedalmond;
+            padding: 10px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: black;
+            color: hotpink;
+        }
+    </style>
+</head>
+<body>
+
+    <form onsubmit="return ValidateForm()">
+        <div class="container">
+            <label for="name">Name: </label>
+            <input type="text" id="name">
+        </div>
+        <div class="container">
+            <label for="email">Email: </label>
+            <input type="email" id="email">
+        </div>
+        <div class="container">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        
+        function ValidateForm(){
+            let name = document.getElementById("name").value
+            let email = document.getElementById("email").value
+
+            if(name==="" || email===""){
+                alert("Fill all fields")
+                return false
+            }
+        }
+    </script>
+</body>
+</html>
