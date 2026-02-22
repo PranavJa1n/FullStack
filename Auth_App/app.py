@@ -32,13 +32,23 @@ def home():
 def register():
     if request.method == 'POST':
         try:
-            name = request.form['name']
-            email = request.form['email']
-            password = request.form['password']    
-            new_user = User(name=name, email=email, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect('/login')
+            name = request.form.get('name').strip()
+            email = request.form.get('email').strip()
+            password = request.form.get('password').strip()
+
+            if("" == name):
+                return render_template("register.html", error="Please Fill the name", email=email, password=password)
+            elif("" == email):
+                return render_template("register.html", error="Email cannot be empty", name=name, password=password)
+            elif("" == password):
+                return render_template("register.html", error="Password cannot be empty", name=name, email=email)
+            elif(len(password) < 6):
+                return render_template("register.html", error="Password must be at least 6 character long", name=name, email=email)
+            else:
+                new_user = User(name=name, email=email, password=password)
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect('/login')
         except:
             return render_template("register.html", error="Already a member please login")
     
